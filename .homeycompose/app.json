@@ -1,6 +1,6 @@
 {
   "id": "com.diagral",
-  "version": "1.0.17",
+  "version": "1.0.19",
   "compatibility": ">=12.0.0",
   "sdk": 3,
   "platforms": [
@@ -18,8 +18,8 @@
     "security"
   ],
   "author": {
-    "name": "Luca Amoroso",
-    "email": "luca.amoroso18@gmail.com"
+    "name": "lucaamo",
+    "email": "52720769+lucaamo@users.noreply.github.com"
   },
   "brandColor": "#D4CC00",
   "icon": "/assets/icon.svg",

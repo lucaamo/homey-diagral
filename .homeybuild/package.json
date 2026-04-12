@@ -1,8 +1,0 @@
-{
-  "name": "com.diagral",
-  "version": "0.2.0",
-  "private": true,
-  "dependencies": {
-    "undici": "^7.24.7"
-  }
-}

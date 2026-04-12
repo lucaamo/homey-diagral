@@ -1,34 +1,57 @@
 # Diagral for Homey Pro
 
-Stable package with:
-- reduced logs
-- better error messages
-- configurable polling
-- custom Flow cards
-- working Diagral cloud API client
+Connect your Diagral alarm system to Homey Pro.
 
-## Install
+This app lets you control the alarm, read its current status, monitor anomalies, and use Homey Flow cards to automate actions when the alarm mode changes.
 
-1. `npm install`
-2. `homey app install`
-3. Add device: **Diagral Alarm**
-4. Fill in Email/Password + Serial ID + PIN
-5. Optionally paste API key and Secret key
-6. `homey app run` for development
+## Features
+
+- Arm and disarm the alarm from Homey
+- Check the current alarm mode
+- Monitor active groups
+- Monitor anomalies
+- Use Flow cards for triggers, conditions, and actions
+- Automatically generate API credentials from your Diagral account
+
+## Installation
+
+1. Install the app on Homey Pro.
+2. Add the **Diagral Alarm** device.
+3. Open the device **Advanced Settings**.
+4. Enter:
+   - the email address used for your Diagral eOne account
+   - your account password
+   - the Serial ID of your Diagral alarm and control box DIAG56AAX
+   - the PIN code linked to your account
+5. Save the settings.
+6. Restart the app if needed.
+
+Before saving, make sure there are no other active connections to the Diagral Cloud, including the Diagral eOne mobile app.
 
 ## Flow cards
 
 ### Trigger
+
 - Alarm mode changed
-- Alarm triggered
 
 ### Condition
+
 - Alarm mode is...
 
 ### Action
+
 - Set alarm mode
 - Refresh alarm status
 
 ## Notes
 
-Use the Diagral box serial ID (14 chars). If you exposed credentials during testing, rotate password, PIN, API key and Secret key.
+Use the Serial ID of your Diagral alarm and control box DIAG56AAX.
+
+The Serial ID is a 14-character code located inside the box, on the label next to the QR code.
+
+![How to find the Diagral box Serial ID](docs/images/diagral-serial-id.png)
+
+## Support
+
+- Issues: https://github.com/lucaamo/homey-diagral/issues
+- Source: https://github.com/lucaamo/homey-diagral

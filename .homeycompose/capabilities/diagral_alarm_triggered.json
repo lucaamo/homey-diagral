@@ -1,0 +1,11 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Alarm triggered",
+    "it": "Allarme scattato"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": null,
+  "icon": "/drivers/alarm_hub/assets/triggered.png"
+}

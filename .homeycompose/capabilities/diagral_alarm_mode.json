@@ -1,0 +1,16 @@
+{
+  "type": "enum",
+  "title": {
+    "en": "Alarm mode",
+    "it": "Modalità allarme"
+  },
+  "getable": true,
+  "setable": true,
+  "values": [
+    { "id": "disarmed", "title": { "en": "Disarmed", "it": "Spento" } },
+    { "id": "armed_home", "title": { "en": "Partial", "it": "Parziale" } },
+    { "id": "armed_away", "title": { "en": "Full", "it": "Totale" } }
+  ],
+  "uiComponent": "picker",
+  "icon": "/drivers/alarm_hub/assets/mode.svg"
+}

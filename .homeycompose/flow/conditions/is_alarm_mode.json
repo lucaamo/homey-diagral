@@ -1,0 +1,27 @@
+{
+  "id": "is_alarm_mode",
+  "title": {
+    "en": "Alarm mode is...",
+    "it": "La modalità allarme è..."
+  },
+  "titleFormatted": {
+    "en": "The alarm mode is [[mode]]",
+    "it": "La modalità dell'allarme è [[mode]]"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=alarm_hub"
+    },
+    {
+      "name": "mode",
+      "type": "dropdown",
+      "values": [
+        { "id": "disarmed", "title": { "en": "Off", "it": "Spento" } },
+        { "id": "armed_home", "title": { "en": "Partial", "it": "Parziale" } },
+        { "id": "armed_away", "title": { "en": "Full", "it": "Totale" } }
+      ]
+    }
+  ]
+}

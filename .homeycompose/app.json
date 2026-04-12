@@ -1,0 +1,352 @@
+{
+  "id": "com.diagral",
+  "version": "1.0.7",
+  "compatibility": ">=12.0.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Diagral",
+    "it": "Diagral"
+  },
+  "description": {
+    "en": "Smart protection, always within reach",
+    "it": "Protezione intelligente, sempre a portata di mano"
+  },
+  "category": [
+    "security"
+  ],
+  "author": {
+    "name": "Luca Amoroso",
+    "email": "luca.amoroso18@gmail.com"
+  },
+  "brandColor": "#C8102E",
+  "icon": "/assets/icon.svg",
+  "drivers": [
+    {
+      "id": "alarm_hub",
+      "name": {
+        "en": "Diagral Alarm",
+        "it": "Allarme Diagral"
+      },
+      "class": "sensor",
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "images": {
+        "small": "/drivers/alarm_hub/assets/images/small.png",
+        "large": "/drivers/alarm_hub/assets/images/large.png"
+      },
+      "capabilities": [
+        "diagral_alarm_mode",
+        "diagral_alarm_triggered",
+        "diagral_anomalies_count",
+        "diagral_active_groups"
+      ],
+      "capabilitiesOptions": {
+        "diagral_alarm_mode": {
+          "title": {
+            "en": "Alarm mode",
+            "it": "Modalità allarme"
+          }
+        },
+        "diagral_alarm_triggered": {
+          "title": {
+            "en": "Alarm triggered",
+            "it": "Allarme scattato"
+          },
+          "insightsTitleTrue": {
+            "en": "Alarm triggered",
+            "it": "Allarme scattato"
+          },
+          "insightsTitleFalse": {
+            "en": "Alarm restored",
+            "it": "Allarme rientrato"
+          }
+        },
+        "diagral_anomalies_count": {
+          "title": {
+            "en": "Anomalies",
+            "it": "Anomalie"
+          }
+        },
+        "diagral_active_groups": {
+          "title": {
+            "en": "Active groups",
+            "it": "Gruppi attivi"
+          }
+        }
+      },
+      "energy": {
+        "approximation": {
+          "usageOn": 1,
+          "usageOff": 1
+        }
+      },
+      "settings": [
+        {
+          "id": "username",
+          "type": "text",
+          "label": {
+            "en": "Email",
+            "it": "Email"
+          },
+          "value": ""
+        },
+        {
+          "id": "password",
+          "type": "password",
+          "label": {
+            "en": "Password",
+            "it": "Password"
+          },
+          "value": ""
+        },
+        {
+          "id": "serialId",
+          "type": "text",
+          "label": {
+            "en": "Serial ID",
+            "it": "Serial ID"
+          },
+          "value": ""
+        },
+        {
+          "id": "pinCode",
+          "type": "password",
+          "label": {
+            "en": "PIN code",
+            "it": "Codice PIN"
+          },
+          "value": ""
+        },
+        {
+          "id": "pollInterval",
+          "type": "number",
+          "label": {
+            "en": "Polling interval (seconds)",
+            "it": "Intervallo polling (secondi)"
+          },
+          "value": 180,
+          "attr": {
+            "min": 60,
+            "max": 3600
+          }
+        }
+      ],
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ]
+    }
+  ],
+  "capabilities": {
+    "diagral_active_groups": {
+      "type": "number",
+      "title": {
+        "en": "Active groups",
+        "it": "Gruppi attivi"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/drivers/alarm_hub/assets/groups.svg",
+      "min": 0,
+      "max": 8,
+      "step": 1,
+      "decimals": 0
+    },
+    "diagral_alarm_mode": {
+      "type": "enum",
+      "title": {
+        "en": "Alarm mode",
+        "it": "Modalità allarme"
+      },
+      "getable": true,
+      "setable": true,
+      "values": [
+        {
+          "id": "disarmed",
+          "title": {
+            "en": "Off",
+            "it": "Spento"
+          }
+        },
+        {
+          "id": "armed_home",
+          "title": {
+            "en": "Partial",
+            "it": "Parziale"
+          }
+        },
+        {
+          "id": "armed_away",
+          "title": {
+            "en": "Full",
+            "it": "Totale"
+          }
+        }
+      ],
+      "uiComponent": "picker",
+      "icon": "/drivers/alarm_hub/assets/mode.svg"
+    },
+    "diagral_alarm_triggered": {
+      "type": "boolean",
+      "title": {
+        "en": "Alarm triggered",
+        "it": "Allarme scattato"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": null,
+      "icon": "/drivers/alarm_hub/assets/triggered.png"
+    },
+    "diagral_anomalies_count": {
+      "type": "number",
+      "title": {
+        "en": "Anomalies",
+        "it": "Anomalie"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/drivers/alarm_hub/assets/anomalies.svg",
+      "min": 0,
+      "max": 999,
+      "step": 1,
+      "decimals": 0
+    }
+  },
+  "flow": {
+    "conditions": [
+      {
+        "id": "is_alarm_mode",
+        "title": {
+          "en": "Alarm mode is...",
+          "it": "La modalità allarme è..."
+        },
+        "titleFormatted": {
+          "en": "[[device]] mode is [[mode]]",
+          "it": "La modalità di [[device]] è [[mode]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=alarm_hub"
+          },
+          {
+            "name": "mode",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "disarmed",
+                "title": {
+                  "en": "Off",
+                  "it": "Spento"
+                }
+              },
+              {
+                "id": "armed_home",
+                "title": {
+                  "en": "Partial",
+                  "it": "Parziale"
+                }
+              },
+              {
+                "id": "armed_away",
+                "title": {
+                  "en": "Full",
+                  "it": "Totale"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "set_alarm_mode",
+        "title": {
+          "en": "Set alarm mode",
+          "it": "Imposta modalità allarme"
+        },
+        "titleFormatted": {
+          "en": "Set [[device]] to [[mode]]",
+          "it": "Imposta [[device]] su [[mode]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=alarm_hub"
+          },
+          {
+            "name": "mode",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "disarmed",
+                "title": {
+                  "en": "Off",
+                  "it": "Spento"
+                }
+              },
+              {
+                "id": "armed_home",
+                "title": {
+                  "en": "Partial",
+                  "it": "Parziale"
+                }
+              },
+              {
+                "id": "armed_away",
+                "title": {
+                  "en": "Full",
+                  "it": "Totale"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sync_status",
+        "title": {
+          "en": "Refresh alarm status",
+          "it": "Aggiorna stato allarme"
+        },
+        "titleFormatted": {
+          "en": "Refresh [[device]] status",
+          "it": "Aggiorna lo stato di [[device]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=alarm_hub"
+          }
+        ]
+      }
+    ]
+  },
+  "images": {
+    "small": "/assets/store/app-small.png",
+    "large": "/assets/store/app-large.png"
+  },
+  "support": "mailto:luca.amoroso18@gmail.com"
+}

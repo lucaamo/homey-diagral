@@ -1,0 +1,15 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Active groups",
+    "it": "Gruppi attivi"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/drivers/alarm_hub/assets/groups.svg",
+  "min": 0,
+  "max": 8,
+  "step": 1,
+  "decimals": 0
+}

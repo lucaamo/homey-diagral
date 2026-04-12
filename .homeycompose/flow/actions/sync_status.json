@@ -1,0 +1,18 @@
+{
+  "id": "sync_status",
+  "title": {
+    "en": "Refresh alarm status",
+    "it": "Aggiorna stato allarme"
+  },
+  "titleFormatted": {
+    "en": "Refresh the alarm status",
+    "it": "Aggiorna lo stato dell'allarme"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=alarm_hub"
+    }
+  ]
+}

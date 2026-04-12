@@ -1,0 +1,27 @@
+{
+  "id": "set_alarm_mode",
+  "title": {
+    "en": "Set alarm mode",
+    "it": "Imposta modalità allarme"
+  },
+  "titleFormatted": {
+    "en": "Set the alarm to [[mode]]",
+    "it": "Imposta l'allarme su [[mode]]"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=alarm_hub"
+    },
+    {
+      "name": "mode",
+      "type": "dropdown",
+      "values": [
+        { "id": "disarmed", "title": { "en": "Off", "it": "Spento" } },
+        { "id": "armed_home", "title": { "en": "Partial", "it": "Parziale" } },
+        { "id": "armed_away", "title": { "en": "Full", "it": "Totale" } }
+      ]
+    }
+  ]
+}

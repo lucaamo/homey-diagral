@@ -1,0 +1,37 @@
+{
+  "id": "alarm_mode_changed",
+  "title": {
+    "en": "Alarm mode changed",
+    "it": "La modalità allarme è cambiata"
+  },
+  "titleFormatted": {
+    "en": "The alarm changed to [[mode]]",
+    "it": "L'allarme è passato a [[mode]]"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=alarm_hub"
+    },
+    {
+      "name": "mode",
+      "type": "dropdown",
+      "values": [
+        { "id": "disarmed", "title": { "en": "Off", "it": "Spento" } },
+        { "id": "armed_home", "title": { "en": "Partial", "it": "Parziale" } },
+        { "id": "armed_away", "title": { "en": "Full", "it": "Totale" } }
+      ]
+    }
+  ],
+  "tokens": [
+    {
+      "name": "mode",
+      "type": "string",
+      "title": {
+        "en": "Mode",
+        "it": "Modalità"
+      }
+    }
+  ]
+}

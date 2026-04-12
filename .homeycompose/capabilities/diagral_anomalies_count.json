@@ -1,0 +1,15 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Anomalies",
+    "it": "Anomalie"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/drivers/alarm_hub/assets/anomalies.svg",
+  "min": 0,
+  "max": 999,
+  "step": 1,
+  "decimals": 0
+}

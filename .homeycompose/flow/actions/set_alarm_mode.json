@@ -17,6 +17,10 @@
     {
       "name": "mode",
       "type": "dropdown",
+      "title": {
+        "en": "Mode",
+        "it": "Modalità"
+      },
       "values": [
         { "id": "disarmed", "title": { "en": "Off", "it": "Spento" } },
         { "id": "armed_home", "title": { "en": "Partial", "it": "Parziale" } },

@@ -1,6 +1,6 @@
 {
   "id": "com.diagral",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "compatibility": ">=12.0.0",
   "sdk": 3,
   "platforms": [
@@ -349,5 +349,12 @@
     "large": "/assets/store/app-large.png"
   },
   "support": "https://github.com/lucaamo/homey-diagral/issues",
-  "source": "https://github.com/lucaamo/homey-diagral"
+  "source": "https://github.com/lucaamo/homey-diagral",
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "AmorosoLuca"
+      }
+    }
+  }
 }

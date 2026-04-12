@@ -1,6 +1,6 @@
 {
   "id": "com.diagral",
-  "version": "1.0.12",
+  "version": "1.0.15",
   "compatibility": ">=12.0.0",
   "sdk": 3,
   "platforms": [
@@ -21,7 +21,7 @@
     "name": "Luca Amoroso",
     "email": "luca.amoroso18@gmail.com"
   },
-  "brandColor": "#C8102E",
+  "brandColor": "#D4CC00",
   "icon": "/assets/icon.svg",
   "drivers": [
     {
@@ -348,5 +348,6 @@
     "small": "/assets/store/app-small.png",
     "large": "/assets/store/app-large.png"
   },
-  "support": "mailto:luca.amoroso18@gmail.com"
+  "support": "https://github.com/lucaamo/homey-diagral/issues",
+  "source": "https://github.com/lucaamo/homey-diagral"
 }

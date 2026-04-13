@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.diagral",
-  "version": "1.0.19",
+  "version": "1.1.0",
   "compatibility": ">=12.0.0",
   "sdk": 3,
   "platforms": [
@@ -40,60 +40,91 @@
   "flow": {
     "triggers": [
       {
-        "id": "alarm_mode_changed",
+        "id": "alarm_armed_away",
         "title": {
-          "en": "Alarm mode changed",
-          "it": "La modalità allarme è cambiata"
+          "en": "Alarm armed full",
+          "it": "Allarme inserito totale"
         },
         "titleFormatted": {
-          "en": "The alarm changed to [[mode]]",
-          "it": "L'allarme è passato a [[mode]]"
+          "en": "[[device]] armed full",
+          "it": "[[device]] inserito totale"
         },
         "args": [
           {
             "name": "device",
             "type": "device",
             "filter": "driver_id=alarm_hub"
-          },
+          }
+        ]
+      },
+      {
+        "id": "alarm_armed_home",
+        "title": {
+          "en": "Alarm armed partial",
+          "it": "Allarme inserito parziale"
+        },
+        "titleFormatted": {
+          "en": "[[device]] armed partial",
+          "it": "[[device]] inserito parziale"
+        },
+        "args": [
           {
-            "name": "mode",
-            "type": "dropdown",
-            "title": {
-              "en": "Mode",
-              "it": "Modalità"
-            },
-            "values": [
-              {
-                "id": "disarmed",
-                "title": {
-                  "en": "Off",
-                  "it": "Spento"
-                }
-              },
-              {
-                "id": "armed_home",
-                "title": {
-                  "en": "Partial",
-                  "it": "Parziale"
-                }
-              },
-              {
-                "id": "armed_away",
-                "title": {
-                  "en": "Full",
-                  "it": "Totale"
-                }
-              }
-            ]
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=alarm_hub"
+          }
+        ]
+      },
+      {
+        "id": "alarm_disarmed",
+        "title": {
+          "en": "Alarm turned off",
+          "it": "Allarme spento"
+        },
+        "titleFormatted": {
+          "en": "[[device]] turned off",
+          "it": "[[device]] spento"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=alarm_hub"
+          }
+        ]
+      },
+      {
+        "id": "alarm_triggered",
+        "title": {
+          "en": "Alarm triggered",
+          "it": "Allarme scattato"
+        },
+        "titleFormatted": {
+          "en": "[[device]] alarm triggered",
+          "it": "Allarme scattato su [[device]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=alarm_hub"
           }
         ],
         "tokens": [
           {
-            "name": "mode",
+            "name": "group_id",
             "type": "string",
             "title": {
-              "en": "Mode",
-              "it": "Modalità"
+              "en": "Group ID",
+              "it": "ID gruppo"
+            }
+          },
+          {
+            "name": "group_name",
+            "type": "string",
+            "title": {
+              "en": "Group name",
+              "it": "Nome gruppo"
             }
           }
         ]
@@ -201,6 +232,79 @@
         ]
       },
       {
+        "id": "set_group_state",
+        "title": {
+          "en": "Set group state",
+          "it": "Imposta stato gruppo"
+        },
+        "titleFormatted": {
+          "en": "Set group [[group]] to [[operation]]",
+          "it": "Imposta il gruppo [[group]] su [[operation]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=alarm_hub"
+          },
+          {
+            "name": "group",
+            "type": "dropdown",
+            "title": {
+              "en": "Group",
+              "it": "Gruppo"
+            },
+            "values": [
+              {
+                "id": "1",
+                "title": {
+                  "en": "Group 1",
+                  "it": "Gruppo 1"
+                }
+              },
+              {
+                "id": "2",
+                "title": {
+                  "en": "Group 2",
+                  "it": "Gruppo 2"
+                }
+              },
+              {
+                "id": "3",
+                "title": {
+                  "en": "Group 3",
+                  "it": "Gruppo 3"
+                }
+              }
+            ]
+          },
+          {
+            "name": "operation",
+            "type": "dropdown",
+            "title": {
+              "en": "Operation",
+              "it": "Operazione"
+            },
+            "values": [
+              {
+                "id": "arm",
+                "title": {
+                  "en": "Arm",
+                  "it": "Attiva"
+                }
+              },
+              {
+                "id": "disarm",
+                "title": {
+                  "en": "Disarm",
+                  "it": "Disattiva"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "sync_status",
         "title": {
           "en": "Refresh alarm status",
@@ -242,7 +346,8 @@
         "diagral_alarm_mode",
         "diagral_alarm_triggered",
         "diagral_anomalies_count",
-        "diagral_active_groups"
+        "diagral_active_groups",
+        "diagral_active_groups_names"
       ],
       "capabilitiesOptions": {
         "diagral_alarm_mode": {
@@ -275,6 +380,12 @@
           "title": {
             "en": "Active groups",
             "it": "Gruppi attivi"
+          }
+        },
+        "diagral_active_groups_names": {
+          "title": {
+            "en": "Active group names",
+            "it": "Nomi gruppi attivi"
           }
         }
       },
@@ -365,6 +476,17 @@
       "max": 8,
       "step": 1,
       "decimals": 0
+    },
+    "diagral_active_groups_names": {
+      "type": "string",
+      "title": {
+        "en": "Active group names",
+        "it": "Nomi gruppi attivi"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": null,
+      "icon": "/drivers/alarm_hub/assets/groups.svg"
     },
     "diagral_alarm_mode": {
       "type": "enum",

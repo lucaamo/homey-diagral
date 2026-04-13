@@ -13,5 +13,11 @@
   },
   "1.0.15": {
     "en": "Updated support link to GitHub Issues."
+  },
+  "1.0.18": {
+    "en": "Updated support link to GitHub Issues."
+  },
+  "1.1.0": {
+    "en": "Removed the legacy \"Alarm mode changed\" trigger."
   }
 }

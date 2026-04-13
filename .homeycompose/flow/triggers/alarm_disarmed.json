@@ -1,0 +1,18 @@
+{
+  "id": "alarm_disarmed",
+  "title": {
+    "en": "Alarm turned off",
+    "it": "Allarme spento"
+  },
+  "titleFormatted": {
+    "en": "[[device]] turned off",
+    "it": "[[device]] spento"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=alarm_hub"
+    }
+  ]
+}

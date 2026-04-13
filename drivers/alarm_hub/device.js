@@ -10,6 +10,10 @@ class AlarmHubDevice extends Homey.Device {
     this.lastTriggered = null;
     this.client = this.buildClientFromSettings(this.getSettings());
 
+    if (!this.hasCapability('diagral_active_groups_names')) {
+      await this.addCapability('diagral_active_groups_names');
+    }
+
     this.registerCapabilityListeners();
     await this.bootstrapState(this.getSettings());
     this.startPolling();
@@ -56,22 +60,41 @@ class AlarmHubDevice extends Homey.Device {
   }
 
   mapMode(statusValue) {
-    const raw = String(statusValue?.status || statusValue?.mode || '').toUpperCase();
+    const raw = String(statusValue?.status || statusValue?.mode || '').trim().toUpperCase();
 
     switch (raw) {
-      case 'PRESENCE':
-        return 'armed_home';
-      case 'START':
-        return 'armed_away';
+      case 'OFF':
       case 'STOP':
+      case 'DISARMED':
         return 'disarmed';
+
+      case 'PRESENCE':
+      case 'TEMPO_1':
+      case 'TEMPO_2':
+      case 'ARMED_HOME':
+      case 'HOME':
+      case 'PARTIAL':
+        return 'armed_home';
+
+      case 'TEMPO_GROUP':
+      case 'GROUP':
+      case 'START':
+      case 'ON':
+      case 'AWAY':
+      case 'ARMED_AWAY':
+      case 'TOTAL':
+      case 'FULL':
+        return 'armed_away';
+
       case 'TRIGGERED':
       case 'ALARM':
-        return 'armed_away';
+        return 'triggered';
+
       case 'ARMING':
         return this.getCapabilityValue('diagral_alarm_mode') || 'disarmed';
+
       default:
-        return 'disarmed';
+        return this.getCapabilityValue('diagral_alarm_mode') || 'disarmed';
     }
   }
 
@@ -85,6 +108,66 @@ class AlarmHubDevice extends Homey.Device {
     }
 
     return 0;
+  }
+
+  async getActiveGroupNames(statusValue) {
+    const configGroups = await this.client.getGroupsConfiguration().catch(() => []);
+    const byId = new Map();
+
+    for (const g of configGroups) {
+      const id = Number(g?.index ?? g?.id ?? g?.group_id);
+      const name = String(g?.name ?? g?.label ?? g?.title ?? '').trim();
+      if (Number.isFinite(id) && name) byId.set(id, name);
+    }
+
+    const rawStatus = String(statusValue?.status || statusValue?.mode || '').toUpperCase();
+
+    let activeIds = [];
+    if (rawStatus === 'PRESENCE') {
+      activeIds = await this.client.getPresenceGroups().catch(() => []);
+    } else if (Array.isArray(statusValue?.activated_groups)) {
+      activeIds = statusValue.activated_groups.map(v => Number(v)).filter(v => Number.isFinite(v));
+    }
+
+    const names = activeIds.map(id => byId.get(id) || `Group ${id}`);
+    return names.length ? names.join(', ') : 'None';
+  }
+
+  async getAlarmGroupInfo(anomaliesValue) {
+    const configGroups = await this.client.getGroupsConfiguration().catch(() => []);
+    const byId = new Map();
+
+    for (const g of configGroups) {
+      const id = Number(g?.index ?? g?.id ?? g?.group_id);
+      const name = String(g?.name ?? g?.label ?? g?.title ?? '').trim();
+      if (Number.isFinite(id) && name) byId.set(id, name);
+    }
+
+    const candidates = [
+      anomaliesValue?.group_id,
+      anomaliesValue?.groupId,
+      anomaliesValue?.group,
+      anomaliesValue?.id_group,
+    ];
+
+    let groupId = '';
+    for (const c of candidates) {
+      const n = Number(c);
+      if (Number.isFinite(n)) {
+        groupId = String(n);
+        break;
+      }
+    }
+
+    const groupName =
+      anomaliesValue?.group_name ||
+      anomaliesValue?.groupName ||
+      (groupId ? (byId.get(Number(groupId)) || `Group ${groupId}`) : '');
+
+    return {
+      group_id: groupId || '',
+      group_name: String(groupName || ''),
+    };
   }
 
   async getActiveGroupsCount(statusValue) {
@@ -110,20 +193,40 @@ class AlarmHubDevice extends Homey.Device {
     const mode = this.mapMode(statusValue);
     const triggered = mode === 'triggered';
     const activeGroups = await this.getActiveGroupsCount(statusValue);
+    const activeGroupNames = await this.getActiveGroupNames(statusValue);
     const anomaliesCount = this.countAnomalies(anomaliesValue);
 
     await this.setCapabilityValue('diagral_alarm_mode', mode);
     await this.setCapabilityValue('diagral_alarm_triggered', triggered);
     await this.setCapabilityValue('diagral_active_groups', activeGroups);
+    await this.setCapabilityValue('diagral_active_groups_names', activeGroupNames);
     await this.setCapabilityValue('diagral_anomalies_count', anomaliesCount);
 
+    if (this.lastMode !== null && this.lastMode !== mode && this.homey.app) {
+      if (mode === 'disarmed' && typeof this.homey.app.triggerAlarmDisarmed === 'function') {
+        await this.homey.app.triggerAlarmDisarmed(this).catch(() => null);
+      }
+
+      if (mode === 'armed_home' && typeof this.homey.app.triggerAlarmArmedHome === 'function') {
+        await this.homey.app.triggerAlarmArmedHome(this).catch(() => null);
+      }
+
+      if (mode === 'armed_away' && typeof this.homey.app.triggerAlarmArmedAway === 'function') {
+        await this.homey.app.triggerAlarmArmedAway(this).catch(() => null);
+      }
+    }
+
     if (
-      this.lastMode !== null &&
-      this.lastMode !== mode &&
+      triggered &&
+      this.lastTriggered !== true &&
       this.homey.app &&
-      typeof this.homey.app.triggerModeChanged === 'function'
+      typeof this.homey.app.triggerAlarmTriggered === 'function'
     ) {
-      await this.homey.app.triggerModeChanged(this, mode).catch(() => null);
+      const tokens = await this.getAlarmGroupInfo(anomaliesValue).catch(() => ({
+        group_id: '',
+        group_name: '',
+      }));
+      await this.homey.app.triggerAlarmTriggered(this, tokens).catch(() => null);
     }
 
     this.lastMode = mode;
@@ -183,6 +286,26 @@ class AlarmHubDevice extends Homey.Device {
       this.error('Bootstrap failed', err);
       await this.setUnavailable(DiagralClient.normalizeError(err));
     }
+  }
+
+  async setGroupState(group, operation, settings = this.getSettings()) {
+    await this.ensureApiBootstrap(settings);
+
+    const groupId = Number(group);
+    if (!Number.isFinite(groupId)) {
+      throw new Error('Invalid group id');
+    }
+
+    if (operation === 'arm') {
+      await this.client.activateGroup([groupId]);
+    } else if (operation === 'disarm') {
+      await this.client.disableGroup([groupId]);
+    } else {
+      throw new Error(`Unsupported group operation: ${operation}`);
+    }
+
+    await this.sleep(1000);
+    await this.syncNow(settings);
   }
 
   async syncNow(settings = this.getSettings()) {

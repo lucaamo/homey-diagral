@@ -1,0 +1,18 @@
+{
+  "id": "alarm_armed_home",
+  "title": {
+    "en": "Alarm armed partial",
+    "it": "Allarme inserito parziale"
+  },
+  "titleFormatted": {
+    "en": "[[device]] armed partial",
+    "it": "[[device]] inserito parziale"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=alarm_hub"
+    }
+  ]
+}

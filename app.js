@@ -5,19 +5,21 @@ const Homey = require('homey');
 class DiagralApp extends Homey.App {
   async onInit() {
     this.log('Diagral app initialized');
-    this.registerFlowCards();
-  }
 
-  registerFlowCards() {
-    this._alarmModeChangedTrigger = this.homey.flow.getDeviceTriggerCard('alarm_mode_changed');
-
-    this._alarmModeChangedTrigger.registerRunListener(async (args, state) => {
-      return args && state && args.mode === state.mode;
-    });
+    this._alarmTriggeredFlowTrigger = this.homey.flow.getDeviceTriggerCard('alarm_triggered');
+    this._alarmDisarmedTrigger = this.homey.flow.getDeviceTriggerCard('alarm_disarmed');
+    this._alarmArmedHomeTrigger = this.homey.flow.getDeviceTriggerCard('alarm_armed_home');
+    this._alarmArmedAwayTrigger = this.homey.flow.getDeviceTriggerCard('alarm_armed_away');
 
     const setAlarmMode = this.homey.flow.getActionCard('set_alarm_mode');
     setAlarmMode.registerRunListener(async ({ device, mode }) => {
       await device.setAlarmMode(mode);
+      return true;
+    });
+
+    const setGroupState = this.homey.flow.getActionCard('set_group_state');
+    setGroupState.registerRunListener(async ({ device, group, operation }) => {
+      await device.setGroupState(group, operation);
       return true;
     });
 
@@ -33,9 +35,24 @@ class DiagralApp extends Homey.App {
     });
   }
 
-  async triggerModeChanged(device, mode) {
-    if (!this._alarmModeChangedTrigger) return;
-    await this._alarmModeChangedTrigger.trigger(device, { mode }, { mode });
+  async triggerAlarmTriggered(device, tokens = {}) {
+    if (!this._alarmTriggeredFlowTrigger) return;
+    await this._alarmTriggeredFlowTrigger.trigger(device, tokens);
+  }
+
+  async triggerAlarmDisarmed(device) {
+    if (!this._alarmDisarmedTrigger) return;
+    await this._alarmDisarmedTrigger.trigger(device);
+  }
+
+  async triggerAlarmArmedHome(device) {
+    if (!this._alarmArmedHomeTrigger) return;
+    await this._alarmArmedHomeTrigger.trigger(device);
+  }
+
+  async triggerAlarmArmedAway(device) {
+    if (!this._alarmArmedAwayTrigger) return;
+    await this._alarmArmedAwayTrigger.trigger(device);
   }
 }
 

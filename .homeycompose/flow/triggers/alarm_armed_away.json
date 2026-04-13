@@ -1,0 +1,18 @@
+{
+  "id": "alarm_armed_away",
+  "title": {
+    "en": "Alarm armed full",
+    "it": "Allarme inserito totale"
+  },
+  "titleFormatted": {
+    "en": "[[device]] armed full",
+    "it": "[[device]] inserito totale"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=alarm_hub"
+    }
+  ]
+}

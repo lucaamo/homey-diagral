@@ -2,7 +2,7 @@
 
 Connect your Diagral alarm system to Homey Pro.
 
-This app lets you control the alarm, read its current status, monitor anomalies, and use Homey Flow cards to automate actions when the alarm mode changes.
+This app lets you control the alarm, read its current status, monitor anomalies, control individual groups, and use Homey Flow cards to automate actions when the alarm changes state.
 
 ## Features
 
@@ -10,7 +10,12 @@ This app lets you control the alarm, read its current status, monitor anomalies,
 - Check the current alarm mode
 - Monitor active groups
 - Monitor anomalies
-- Use Flow cards for triggers, conditions, and actions
+- Arm or disarm individual groups from Flows
+- Use dedicated Flow triggers for:
+  - alarm turned off
+  - alarm armed partial
+  - alarm armed full
+  - alarm triggered
 - Automatically generate API credentials from your Diagral account
 
 ## Installation
@@ -30,17 +35,21 @@ Before saving, make sure there are no other active connections to the Diagral Cl
 
 ## Flow cards
 
-### Trigger
+### Triggers
 
-- Alarm mode changed
+- Alarm turned off
+- Alarm armed partial
+- Alarm armed full
+- Alarm triggered
 
 ### Condition
 
 - Alarm mode is...
 
-### Action
+### Actions
 
 - Set alarm mode
+- Set group state
 - Refresh alarm status
 
 ## Notes

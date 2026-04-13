@@ -19,7 +19,8 @@
     "diagral_alarm_mode",
     "diagral_alarm_triggered",
     "diagral_anomalies_count",
-    "diagral_active_groups"
+    "diagral_active_groups",
+    "diagral_active_groups_names"
   ],
   "capabilitiesOptions": {
     "diagral_alarm_mode": {
@@ -52,6 +53,12 @@
       "title": {
         "en": "Active groups",
         "it": "Gruppi attivi"
+      }
+    },
+    "diagral_active_groups_names": {
+      "title": {
+        "en": "Active group names",
+        "it": "Nomi gruppi attivi"
       }
     }
   },

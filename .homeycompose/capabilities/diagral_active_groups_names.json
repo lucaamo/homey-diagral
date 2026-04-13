@@ -1,0 +1,11 @@
+{
+  "type": "string",
+  "title": {
+    "en": "Active group names",
+    "it": "Nomi gruppi attivi"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": null,
+  "icon": "/drivers/alarm_hub/assets/groups.svg"
+}

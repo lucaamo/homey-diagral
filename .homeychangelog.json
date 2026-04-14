@@ -19,5 +19,8 @@
   },
   "1.1.0": {
     "en": "Removed the legacy \"Alarm mode changed\" trigger."
+  },
+  "1.1.1": {
+    "en": "Added dedicated triggers for off, partial, full, triggered alarm states, flow action to arm or disarm individual groups."
   }
 }

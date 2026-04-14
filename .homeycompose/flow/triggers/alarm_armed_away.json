@@ -5,8 +5,8 @@
     "it": "Allarme inserito totale"
   },
   "titleFormatted": {
-    "en": "[[device]] armed full",
-    "it": "[[device]] inserito totale"
+    "en": "Alarm armed full",
+    "it": "Allarme inserito totale"
   },
   "args": [
     {

@@ -5,8 +5,8 @@
     "it": "Allarme scattato"
   },
   "titleFormatted": {
-    "en": "[[device]] alarm triggered",
-    "it": "Allarme scattato su [[device]]"
+    "en": "Alarm triggered",
+    "it": "Allarme scattato"
   },
   "args": [
     {

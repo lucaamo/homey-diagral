@@ -5,8 +5,8 @@
     "it": "Allarme spento"
   },
   "titleFormatted": {
-    "en": "[[device]] turned off",
-    "it": "[[device]] spento"
+    "en": "Alarm turned off",
+    "it": "Allarme spento"
   },
   "args": [
     {

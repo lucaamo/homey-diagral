@@ -22,5 +22,8 @@
   },
   "1.1.1": {
     "en": "Added dedicated triggers for off, partial, full, triggered alarm states, flow action to arm or disarm individual groups."
+  },
+  "1.1.3": {
+    "en": "Improved Flow card titles for alarm triggers."
   }
 }

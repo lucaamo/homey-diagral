@@ -28,5 +28,8 @@
   },
   "1.1.5": {
     "en": "Updated app store images."
+  },
+  "1.1.7": {
+    "en": "Added a new Flow trigger for active groups changes, including active group count and names."
   }
 }

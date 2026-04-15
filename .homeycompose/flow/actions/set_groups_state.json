@@ -1,12 +1,12 @@
 {
-  "id": "set_group_state",
+  "id": "set_groups_state",
   "title": {
-    "en": "Set group state",
-    "it": "Imposta stato gruppo"
+    "en": "Set multiple groups state",
+    "it": "Imposta stato di più gruppi"
   },
   "titleFormatted": {
-    "en": "Set group [[group]] to [[operation]]",
-    "it": "Imposta il gruppo [[group]] su [[operation]]"
+    "en": "Set groups [[groups]] to [[operation]]",
+    "it": "Imposta i gruppi [[groups]] su [[operation]]"
   },
   "args": [
     {
@@ -15,11 +15,15 @@
       "filter": "driver_id=alarm_hub"
     },
     {
-      "name": "group",
-      "type": "autocomplete",
+      "name": "groups",
+      "type": "text",
       "title": {
-        "en": "Group",
-        "it": "Gruppo"
+        "en": "Groups",
+        "it": "Gruppi"
+      },
+      "placeholder": {
+        "en": "1,2,3",
+        "it": "1,2,3"
       }
     },
     {

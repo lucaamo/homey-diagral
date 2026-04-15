@@ -1,0 +1,26 @@
+{
+  "id": "is_group_active",
+  "title": {
+    "en": "Group is active",
+    "it": "Il gruppo è attivo"
+  },
+  "titleFormatted": {
+    "en": "Group [[group]] is active",
+    "it": "Il gruppo [[group]] è attivo"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=alarm_hub"
+    },
+    {
+      "name": "group",
+      "type": "autocomplete",
+      "title": {
+        "en": "Group",
+        "it": "Gruppo"
+      }
+    }
+  ]
+}

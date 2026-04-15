@@ -19,8 +19,11 @@
     "diagral_alarm_mode",
     "diagral_alarm_triggered",
     "diagral_anomalies_count",
+    "diagral_anomalies_summary",
     "diagral_active_groups",
-    "diagral_active_groups_names"
+    "diagral_active_groups_names",
+    "diagral_active_groups_ids",
+    "diagral_last_sync"
   ],
   "capabilitiesOptions": {
     "diagral_alarm_mode": {
@@ -49,6 +52,12 @@
         "it": "Anomalie"
       }
     },
+    "diagral_anomalies_summary": {
+      "title": {
+        "en": "Anomalies summary",
+        "it": "Riepilogo anomalie"
+      }
+    },
     "diagral_active_groups": {
       "title": {
         "en": "Active groups",
@@ -59,6 +68,18 @@
       "title": {
         "en": "Active group names",
         "it": "Nomi gruppi attivi"
+      }
+    },
+    "diagral_active_groups_ids": {
+      "title": {
+        "en": "Active group IDs",
+        "it": "ID gruppi attivi"
+      }
+    },
+    "diagral_last_sync": {
+      "title": {
+        "en": "Last sync",
+        "it": "Ultima sincronizzazione"
       }
     }
   },

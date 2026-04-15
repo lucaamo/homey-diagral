@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.diagral",
-  "version": "1.1.8",
+  "version": "1.1.10",
   "compatibility": ">=12.0.0",
   "sdk": 3,
   "platforms": [
@@ -130,6 +130,74 @@
         ]
       },
       {
+        "id": "alarm_status_changed",
+        "title": {
+          "en": "Alarm status changed",
+          "it": "Stato allarme cambiato"
+        },
+        "titleFormatted": {
+          "en": "Alarm status changed",
+          "it": "Stato allarme cambiato"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=alarm_hub"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "previous_mode",
+            "type": "string",
+            "title": {
+              "en": "Previous mode",
+              "it": "Modalità precedente"
+            }
+          },
+          {
+            "name": "current_mode",
+            "type": "string",
+            "title": {
+              "en": "Current mode",
+              "it": "Modalità attuale"
+            }
+          },
+          {
+            "name": "active_groups_count",
+            "type": "number",
+            "title": {
+              "en": "Active groups count",
+              "it": "Numero gruppi attivi"
+            }
+          },
+          {
+            "name": "active_groups_names",
+            "type": "string",
+            "title": {
+              "en": "Active group names",
+              "it": "Nomi gruppi attivi"
+            }
+          },
+          {
+            "name": "active_groups_ids",
+            "type": "string",
+            "title": {
+              "en": "Active group IDs",
+              "it": "ID gruppi attivi"
+            }
+          },
+          {
+            "name": "anomalies_count",
+            "type": "number",
+            "title": {
+              "en": "Anomalies count",
+              "it": "Numero anomalie"
+            }
+          }
+        ]
+      },
+      {
         "id": "alarm_triggered",
         "title": {
           "en": "Alarm triggered",
@@ -164,9 +232,191 @@
             }
           }
         ]
+      },
+      {
+        "id": "anomalies_cleared",
+        "title": {
+          "en": "Anomalies cleared",
+          "it": "Anomalie rientrate"
+        },
+        "titleFormatted": {
+          "en": "Anomalies cleared",
+          "it": "Anomalie rientrate"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=alarm_hub"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "previous_anomaly_count",
+            "type": "number",
+            "title": {
+              "en": "Previous anomalies count",
+              "it": "Numero anomalie precedente"
+            }
+          }
+        ]
+      },
+      {
+        "id": "anomalies_count_changed",
+        "title": {
+          "en": "Anomalies count changed",
+          "it": "Numero anomalie cambiato"
+        },
+        "titleFormatted": {
+          "en": "Anomalies count changed",
+          "it": "Numero anomalie cambiato"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=alarm_hub"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "previous_anomalies_count",
+            "type": "number",
+            "title": {
+              "en": "Previous anomalies count",
+              "it": "Numero anomalie precedente"
+            }
+          },
+          {
+            "name": "anomalies_count",
+            "type": "number",
+            "title": {
+              "en": "Anomalies count",
+              "it": "Numero anomalie"
+            }
+          },
+          {
+            "name": "anomaly_summary",
+            "type": "string",
+            "title": {
+              "en": "Anomaly summary",
+              "it": "Riepilogo anomalie"
+            }
+          }
+        ]
+      },
+      {
+        "id": "anomaly_detected",
+        "title": {
+          "en": "New anomaly detected",
+          "it": "Nuova anomalia rilevata"
+        },
+        "titleFormatted": {
+          "en": "New anomaly detected",
+          "it": "Nuova anomalia rilevata"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=alarm_hub"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "anomaly_count",
+            "type": "number",
+            "title": {
+              "en": "Anomalies count",
+              "it": "Numero anomalie"
+            }
+          },
+          {
+            "name": "anomaly_summary",
+            "type": "string",
+            "title": {
+              "en": "Anomalies summary",
+              "it": "Riepilogo anomalie"
+            }
+          },
+          {
+            "name": "anomaly_id",
+            "type": "string",
+            "title": {
+              "en": "Anomaly ID",
+              "it": "ID anomalia"
+            }
+          },
+          {
+            "name": "anomaly_name",
+            "type": "string",
+            "title": {
+              "en": "Anomaly name",
+              "it": "Nome anomalia"
+            }
+          },
+          {
+            "name": "device_type",
+            "type": "string",
+            "title": {
+              "en": "Device type",
+              "it": "Tipo dispositivo"
+            }
+          },
+          {
+            "name": "device_label",
+            "type": "string",
+            "title": {
+              "en": "Device label",
+              "it": "Nome dispositivo"
+            }
+          },
+          {
+            "name": "group_id",
+            "type": "string",
+            "title": {
+              "en": "Group ID",
+              "it": "ID gruppo"
+            }
+          },
+          {
+            "name": "group_name",
+            "type": "string",
+            "title": {
+              "en": "Group name",
+              "it": "Nome gruppo"
+            }
+          },
+          {
+            "name": "serial",
+            "type": "string",
+            "title": {
+              "en": "Serial",
+              "it": "Seriale"
+            }
+          }
+        ]
       }
     ],
     "conditions": [
+      {
+        "id": "has_anomalies",
+        "title": {
+          "en": "Has anomalies",
+          "it": "Ha anomalie"
+        },
+        "titleFormatted": {
+          "en": "The alarm has anomalies",
+          "it": "L'allarme ha anomalie"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=alarm_hub"
+          }
+        ]
+      },
       {
         "id": "is_alarm_mode",
         "title": {
@@ -213,6 +463,50 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "id": "is_alarm_triggered",
+        "title": {
+          "en": "Alarm is triggered",
+          "it": "L'allarme è scattato"
+        },
+        "titleFormatted": {
+          "en": "The alarm is triggered",
+          "it": "L'allarme è scattato"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=alarm_hub"
+          }
+        ]
+      },
+      {
+        "id": "is_group_active",
+        "title": {
+          "en": "Group is active",
+          "it": "Il gruppo è attivo"
+        },
+        "titleFormatted": {
+          "en": "Group [[group]] is active",
+          "it": "Il gruppo [[group]] è attivo"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=alarm_hub"
+          },
+          {
+            "name": "group",
+            "type": "autocomplete",
+            "title": {
+              "en": "Group",
+              "it": "Gruppo"
+            }
           }
         ]
       }
@@ -285,34 +579,11 @@
           },
           {
             "name": "group",
-            "type": "dropdown",
+            "type": "autocomplete",
             "title": {
               "en": "Group",
               "it": "Gruppo"
-            },
-            "values": [
-              {
-                "id": "1",
-                "title": {
-                  "en": "Group 1",
-                  "it": "Gruppo 1"
-                }
-              },
-              {
-                "id": "2",
-                "title": {
-                  "en": "Group 2",
-                  "it": "Gruppo 2"
-                }
-              },
-              {
-                "id": "3",
-                "title": {
-                  "en": "Group 3",
-                  "it": "Gruppo 3"
-                }
-              }
-            ]
+            }
           },
           {
             "name": "operation",
@@ -334,6 +605,102 @@
                 "title": {
                   "en": "Disarm",
                   "it": "Disattiva"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "set_groups_state",
+        "title": {
+          "en": "Set multiple groups state",
+          "it": "Imposta stato di più gruppi"
+        },
+        "titleFormatted": {
+          "en": "Set groups [[groups]] to [[operation]]",
+          "it": "Imposta i gruppi [[groups]] su [[operation]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=alarm_hub"
+          },
+          {
+            "name": "groups",
+            "type": "text",
+            "title": {
+              "en": "Groups",
+              "it": "Gruppi"
+            },
+            "placeholder": {
+              "en": "1,2,3",
+              "it": "1,2,3"
+            }
+          },
+          {
+            "name": "operation",
+            "type": "dropdown",
+            "title": {
+              "en": "Operation",
+              "it": "Operazione"
+            },
+            "values": [
+              {
+                "id": "arm",
+                "title": {
+                  "en": "Arm",
+                  "it": "Attiva"
+                }
+              },
+              {
+                "id": "disarm",
+                "title": {
+                  "en": "Disarm",
+                  "it": "Disattiva"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "set_partial_mode",
+        "title": {
+          "en": "Set partial alarm mode",
+          "it": "Imposta modalità parziale"
+        },
+        "titleFormatted": {
+          "en": "Set the alarm to [[partial]]",
+          "it": "Imposta l'allarme su [[partial]]"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=alarm_hub"
+          },
+          {
+            "name": "partial",
+            "type": "dropdown",
+            "title": {
+              "en": "Partial mode",
+              "it": "Modalità parziale"
+            },
+            "values": [
+              {
+                "id": "partial_1",
+                "title": {
+                  "en": "Partial 1",
+                  "it": "Parziale 1"
+                }
+              },
+              {
+                "id": "partial_2",
+                "title": {
+                  "en": "Partial 2",
+                  "it": "Parziale 2"
                 }
               }
             ]
@@ -382,8 +749,11 @@
         "diagral_alarm_mode",
         "diagral_alarm_triggered",
         "diagral_anomalies_count",
+        "diagral_anomalies_summary",
         "diagral_active_groups",
-        "diagral_active_groups_names"
+        "diagral_active_groups_names",
+        "diagral_active_groups_ids",
+        "diagral_last_sync"
       ],
       "capabilitiesOptions": {
         "diagral_alarm_mode": {
@@ -412,6 +782,12 @@
             "it": "Anomalie"
           }
         },
+        "diagral_anomalies_summary": {
+          "title": {
+            "en": "Anomalies summary",
+            "it": "Riepilogo anomalie"
+          }
+        },
         "diagral_active_groups": {
           "title": {
             "en": "Active groups",
@@ -422,6 +798,18 @@
           "title": {
             "en": "Active group names",
             "it": "Nomi gruppi attivi"
+          }
+        },
+        "diagral_active_groups_ids": {
+          "title": {
+            "en": "Active group IDs",
+            "it": "ID gruppi attivi"
+          }
+        },
+        "diagral_last_sync": {
+          "title": {
+            "en": "Last sync",
+            "it": "Ultima sincronizzazione"
           }
         }
       },
@@ -513,6 +901,17 @@
       "step": 1,
       "decimals": 0
     },
+    "diagral_active_groups_ids": {
+      "type": "string",
+      "title": {
+        "en": "Active group IDs",
+        "it": "ID gruppi attivi"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": null,
+      "icon": "/drivers/alarm_hub/assets/groups.svg"
+    },
     "diagral_active_groups_names": {
       "type": "string",
       "title": {
@@ -583,6 +982,28 @@
       "max": 999,
       "step": 1,
       "decimals": 0
+    },
+    "diagral_anomalies_summary": {
+      "type": "string",
+      "title": {
+        "en": "Anomalies summary",
+        "it": "Riepilogo anomalie"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": null,
+      "icon": "/drivers/alarm_hub/assets/anomalies.svg"
+    },
+    "diagral_last_sync": {
+      "type": "string",
+      "title": {
+        "en": "Last sync",
+        "it": "Ultima sincronizzazione"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": null,
+      "icon": "/drivers/alarm_hub/assets/mode.svg"
     }
   }
 }

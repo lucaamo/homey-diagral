@@ -1,0 +1,30 @@
+{
+  "id": "set_partial_mode",
+  "title": {
+    "en": "Set partial alarm mode",
+    "it": "Imposta modalità parziale"
+  },
+  "titleFormatted": {
+    "en": "Set the alarm to [[partial]]",
+    "it": "Imposta l'allarme su [[partial]]"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=alarm_hub"
+    },
+    {
+      "name": "partial",
+      "type": "dropdown",
+      "title": {
+        "en": "Partial mode",
+        "it": "Modalità parziale"
+      },
+      "values": [
+        { "id": "partial_1", "title": { "en": "Partial 1", "it": "Parziale 1" } },
+        { "id": "partial_2", "title": { "en": "Partial 2", "it": "Parziale 2" } }
+      ]
+    }
+  ]
+}

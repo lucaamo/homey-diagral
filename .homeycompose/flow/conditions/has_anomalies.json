@@ -1,0 +1,18 @@
+{
+  "id": "has_anomalies",
+  "title": {
+    "en": "Has anomalies",
+    "it": "Ha anomalie"
+  },
+  "titleFormatted": {
+    "en": "The alarm has anomalies",
+    "it": "L'allarme ha anomalie"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=alarm_hub"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "anomalies_cleared",
+  "title": {
+    "en": "Anomalies cleared",
+    "it": "Anomalie rientrate"
+  },
+  "titleFormatted": {
+    "en": "Anomalies cleared",
+    "it": "Anomalie rientrate"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=alarm_hub"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "previous_anomaly_count",
+      "type": "number",
+      "title": {
+        "en": "Previous anomalies count",
+        "it": "Numero anomalie precedente"
+      }
+    }
+  ]
+}

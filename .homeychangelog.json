@@ -34,5 +34,11 @@
   },
   "1.1.8": {
     "en": "Added a new Flow trigger for active groups changes, including active group count and names."
+  },
+  "1.1.9": {
+    "en": "Fix alarm triggered state handling and API key storage."
+  },
+  "1.1.10": {
+    "en": "Add diagnostic capabilities and new Flow cards for status and anomaly changes."
   }
 }

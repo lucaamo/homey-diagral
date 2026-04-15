@@ -1,0 +1,68 @@
+{
+  "id": "alarm_status_changed",
+  "title": {
+    "en": "Alarm status changed",
+    "it": "Stato allarme cambiato"
+  },
+  "titleFormatted": {
+    "en": "Alarm status changed",
+    "it": "Stato allarme cambiato"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=alarm_hub"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "previous_mode",
+      "type": "string",
+      "title": {
+        "en": "Previous mode",
+        "it": "Modalità precedente"
+      }
+    },
+    {
+      "name": "current_mode",
+      "type": "string",
+      "title": {
+        "en": "Current mode",
+        "it": "Modalità attuale"
+      }
+    },
+    {
+      "name": "active_groups_count",
+      "type": "number",
+      "title": {
+        "en": "Active groups count",
+        "it": "Numero gruppi attivi"
+      }
+    },
+    {
+      "name": "active_groups_names",
+      "type": "string",
+      "title": {
+        "en": "Active group names",
+        "it": "Nomi gruppi attivi"
+      }
+    },
+    {
+      "name": "active_groups_ids",
+      "type": "string",
+      "title": {
+        "en": "Active group IDs",
+        "it": "ID gruppi attivi"
+      }
+    },
+    {
+      "name": "anomalies_count",
+      "type": "number",
+      "title": {
+        "en": "Anomalies count",
+        "it": "Numero anomalie"
+      }
+    }
+  ]
+}

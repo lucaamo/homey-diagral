@@ -1,0 +1,44 @@
+{
+  "id": "anomalies_count_changed",
+  "title": {
+    "en": "Anomalies count changed",
+    "it": "Numero anomalie cambiato"
+  },
+  "titleFormatted": {
+    "en": "Anomalies count changed",
+    "it": "Numero anomalie cambiato"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=alarm_hub"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "previous_anomalies_count",
+      "type": "number",
+      "title": {
+        "en": "Previous anomalies count",
+        "it": "Numero anomalie precedente"
+      }
+    },
+    {
+      "name": "anomalies_count",
+      "type": "number",
+      "title": {
+        "en": "Anomalies count",
+        "it": "Numero anomalie"
+      }
+    },
+    {
+      "name": "anomaly_summary",
+      "type": "string",
+      "title": {
+        "en": "Anomaly summary",
+        "it": "Riepilogo anomalie"
+      }
+    }
+  ]
+}

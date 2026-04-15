@@ -1,0 +1,92 @@
+{
+  "id": "anomaly_detected",
+  "title": {
+    "en": "New anomaly detected",
+    "it": "Nuova anomalia rilevata"
+  },
+  "titleFormatted": {
+    "en": "New anomaly detected",
+    "it": "Nuova anomalia rilevata"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=alarm_hub"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "anomaly_count",
+      "type": "number",
+      "title": {
+        "en": "Anomalies count",
+        "it": "Numero anomalie"
+      }
+    },
+    {
+      "name": "anomaly_summary",
+      "type": "string",
+      "title": {
+        "en": "Anomalies summary",
+        "it": "Riepilogo anomalie"
+      }
+    },
+    {
+      "name": "anomaly_id",
+      "type": "string",
+      "title": {
+        "en": "Anomaly ID",
+        "it": "ID anomalia"
+      }
+    },
+    {
+      "name": "anomaly_name",
+      "type": "string",
+      "title": {
+        "en": "Anomaly name",
+        "it": "Nome anomalia"
+      }
+    },
+    {
+      "name": "device_type",
+      "type": "string",
+      "title": {
+        "en": "Device type",
+        "it": "Tipo dispositivo"
+      }
+    },
+    {
+      "name": "device_label",
+      "type": "string",
+      "title": {
+        "en": "Device label",
+        "it": "Nome dispositivo"
+      }
+    },
+    {
+      "name": "group_id",
+      "type": "string",
+      "title": {
+        "en": "Group ID",
+        "it": "ID gruppo"
+      }
+    },
+    {
+      "name": "group_name",
+      "type": "string",
+      "title": {
+        "en": "Group name",
+        "it": "Nome gruppo"
+      }
+    },
+    {
+      "name": "serial",
+      "type": "string",
+      "title": {
+        "en": "Serial",
+        "it": "Seriale"
+      }
+    }
+  ]
+}

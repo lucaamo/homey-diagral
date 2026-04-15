@@ -1,0 +1,18 @@
+{
+  "id": "is_alarm_triggered",
+  "title": {
+    "en": "Alarm is triggered",
+    "it": "L'allarme è scattato"
+  },
+  "titleFormatted": {
+    "en": "The alarm is triggered",
+    "it": "L'allarme è scattato"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=alarm_hub"
+    }
+  ]
+}

@@ -1,15 +1,56 @@
-Diagral connects your alarm system to Homey.
+ENGLISH
 
-After adding the device to Homey, open the device settings and go to Advanced Settings.
+Diagral for Homey Pro lets you control your Diagral alarm system from Homey.
 
-There, enter:
-- the email address used for your Diagral eOne account
-- your account password
-- the Serial ID of your alarm and control box DIAG56AAX
-- the PIN code linked to your account
+Features:
+- Arm and disarm the alarm
+- Monitor alarm mode
+- Monitor active groups and anomalies
+- Arm or disarm individual groups from Flows
+- Use Flow triggers for:
+  - alarm turned off
+  - alarm armed partial
+  - alarm armed full
+  - alarm triggered
+  - active groups changed
 
-The Serial ID is a 14-character code that can be found inside the DIAG56AAX box, on the label next to the QR code.
+Setup:
+1. Add the Diagral Alarm device in Homey.
+2. Open Advanced Settings.
+3. Enter your Diagral eOne email, password, Serial ID of the DIAG56AAX alarm and control box, and PIN code.
+4. Save the settings.
+5. Restart the app if needed.
 
+Important:
 Before saving, make sure there are no other active connections to the Diagral Cloud, including the Diagral eOne mobile app.
 
-After saving the settings, restart the app to apply the configuration correctly.
+The Serial ID is located inside the alarm and control box, on the label next to the QR code.
+
+
+ITALIANO
+
+Diagral per Homey Pro ti permette di controllare il tuo sistema di allarme Diagral da Homey.
+
+Funzioni:
+- Attivazione e disattivazione dell'allarme
+- Monitoraggio della modalità allarme
+- Monitoraggio dei gruppi attivi e delle anomalie
+- Attivazione o disattivazione di singoli gruppi dai Flow
+- Trigger Flow per:
+  - allarme spento
+  - allarme inserito parziale
+  - allarme inserito totale
+  - allarme scattato
+  - gruppi attivi cambiati
+
+Configurazione:
+1. Aggiungi il dispositivo Allarme Diagral in Homey.
+2. Apri le Impostazioni avanzate.
+3. Inserisci email Diagral eOne, password, Serial ID della centrale DIAG56AAX e codice PIN.
+4. Salva le impostazioni.
+5. Riavvia l'app se necessario.
+
+Importante:
+Prima di salvare, assicurati che non ci siano altre connessioni attive al Cloud Diagral, inclusa l'app mobile Diagral eOne.
+
+Il Serial ID si trova all'interno della centrale, sull'etichetta accanto al codice QR.

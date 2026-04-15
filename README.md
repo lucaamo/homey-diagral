@@ -16,6 +16,7 @@ This app lets you control the alarm, read its current status, monitor anomalies,
   - alarm armed partial
   - alarm armed full
   - alarm triggered
+  - active groups changed
 - Automatically generate API credentials from your Diagral account
 
 ## Installation
@@ -41,6 +42,7 @@ Before saving, make sure there are no other active connections to the Diagral Cl
 - Alarm armed partial
 - Alarm armed full
 - Alarm triggered
+- Active groups changed
 
 ### Condition
 

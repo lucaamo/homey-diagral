@@ -10,6 +10,7 @@ class DiagralApp extends Homey.App {
     this._alarmDisarmedTrigger = this.homey.flow.getDeviceTriggerCard('alarm_disarmed');
     this._alarmArmedHomeTrigger = this.homey.flow.getDeviceTriggerCard('alarm_armed_home');
     this._alarmArmedAwayTrigger = this.homey.flow.getDeviceTriggerCard('alarm_armed_away');
+    this._activeGroupsChangedTrigger = this.homey.flow.getDeviceTriggerCard('active_groups_changed');
 
     const setAlarmMode = this.homey.flow.getActionCard('set_alarm_mode');
     setAlarmMode.registerRunListener(async ({ device, mode }) => {
@@ -53,6 +54,11 @@ class DiagralApp extends Homey.App {
   async triggerAlarmArmedAway(device) {
     if (!this._alarmArmedAwayTrigger) return;
     await this._alarmArmedAwayTrigger.trigger(device);
+  }
+
+  async triggerActiveGroupsChanged(device, tokens = {}) {
+    if (!this._activeGroupsChangedTrigger) return;
+    await this._activeGroupsChangedTrigger.trigger(device, tokens);
   }
 }
 

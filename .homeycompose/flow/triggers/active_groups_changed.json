@@ -1,0 +1,36 @@
+{
+  "id": "active_groups_changed",
+  "title": {
+    "en": "Active groups changed",
+    "it": "Gruppi attivi cambiati"
+  },
+  "titleFormatted": {
+    "en": "Active groups changed",
+    "it": "Gruppi attivi cambiati"
+  },
+  "args": [
+    {
+      "name": "device",
+      "type": "device",
+      "filter": "driver_id=alarm_hub"
+    }
+  ],
+  "tokens": [
+    {
+      "name": "active_groups_count",
+      "type": "number",
+      "title": {
+        "en": "Active groups count",
+        "it": "Numero gruppi attivi"
+      }
+    },
+    {
+      "name": "active_groups_names",
+      "type": "string",
+      "title": {
+        "en": "Active group names",
+        "it": "Nomi gruppi attivi"
+      }
+    }
+  ]
+}

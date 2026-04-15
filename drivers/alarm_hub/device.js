@@ -8,6 +8,8 @@ class AlarmHubDevice extends Homey.Device {
     this.pollTimer = null;
     this.lastMode = null;
     this.lastTriggered = null;
+    this.lastActiveGroups = null;
+    this.lastActiveGroupNames = null;
     this.client = this.buildClientFromSettings(this.getSettings());
 
     if (!this.hasCapability('diagral_active_groups_names')) {
@@ -229,8 +231,25 @@ class AlarmHubDevice extends Homey.Device {
       await this.homey.app.triggerAlarmTriggered(this, tokens).catch(() => null);
     }
 
+    if (
+      this.homey.app &&
+      typeof this.homey.app.triggerActiveGroupsChanged === 'function' &&
+      this.lastActiveGroups !== null &&
+      (
+        this.lastActiveGroups !== activeGroups ||
+        this.lastActiveGroupNames !== activeGroupNames
+      )
+    ) {
+      await this.homey.app.triggerActiveGroupsChanged(this, {
+        active_groups_count: activeGroups,
+        active_groups_names: activeGroupNames,
+      }).catch(() => null);
+    }
+
     this.lastMode = mode;
     this.lastTriggered = triggered;
+    this.lastActiveGroups = activeGroups;
+    this.lastActiveGroupNames = activeGroupNames;
   }
 
   async ensureApiBootstrap(settings = this.getSettings()) {

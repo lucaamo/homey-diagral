@@ -17,6 +17,7 @@
   },
   "capabilities": [
     "diagral_alarm_mode",
+    "diagral_alarm_mode_label",
     "diagral_alarm_triggered",
     "diagral_anomalies_count",
     "diagral_anomalies_summary",
@@ -30,6 +31,12 @@
       "title": {
         "en": "Alarm mode",
         "it": "Modalità allarme"
+      }
+    },
+    "diagral_alarm_mode_label": {
+      "title": {
+        "en": "Alarm status",
+        "it": "Stato allarme"
       }
     },
     "diagral_alarm_triggered": {
@@ -127,6 +134,32 @@
       "value": ""
     },
     {
+      "id": "webhookId",
+      "type": "text",
+      "label": {
+        "en": "Webhook ID",
+        "it": "Webhook ID"
+      },
+      "value": "",
+      "hint": {
+        "en": "Optional. Enables Diagral real-time webhook events.",
+        "it": "Opzionale. Abilita gli eventi webhook Diagral in tempo reale."
+      }
+    },
+    {
+      "id": "webhookSecret",
+      "type": "password",
+      "label": {
+        "en": "Webhook secret",
+        "it": "Webhook secret"
+      },
+      "value": "",
+      "hint": {
+        "en": "Keep this value private.",
+        "it": "Mantieni questo valore privato."
+      }
+    },
+    {
       "id": "pollInterval",
       "type": "number",
       "label": {
@@ -151,6 +184,11 @@
     {
       "id": "add_devices",
       "template": "add_devices"
+    }
+  ],
+  "repair": [
+    {
+      "id": "credentials"
     }
   ]
 }

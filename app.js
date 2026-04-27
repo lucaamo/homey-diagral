@@ -5,6 +5,10 @@ const Homey = require('homey');
 class DiagralApp extends Homey.App {
   async onInit() {
     this.log('Diagral app initialized');
+    this.webhookUrl = '';
+    this.webhook = null;
+    this.webhookId = '';
+    this.webhookSecret = '';
 
     this._alarmTriggeredFlowTrigger = this.homey.flow.getDeviceTriggerCard('alarm_triggered');
     this._alarmDisarmedTrigger = this.homey.flow.getDeviceTriggerCard('alarm_disarmed');
@@ -71,11 +75,127 @@ class DiagralApp extends Homey.App {
     isAlarmTriggered.registerRunListener(async ({ device }) => {
       return device.isAlarmTriggered();
     });
+
+    await this.initCloudWebhook(Homey.env.WEBHOOK_ID, Homey.env.WEBHOOK_SECRET);
+  }
+
+  async initCloudWebhook(webhookId, webhookSecret) {
+    webhookId = String(webhookId || '').trim();
+    webhookSecret = String(webhookSecret || '').trim();
+
+    if (!webhookId || !webhookSecret) {
+      this.log('Diagral cloud webhook disabled: WEBHOOK_ID or WEBHOOK_SECRET missing');
+      return;
+    }
+
+    if (this.webhook && this.webhookId === webhookId && this.webhookSecret === webhookSecret && this.webhookUrl) {
+      return;
+    }
+
+    try {
+      const homeyId = await this.homey.cloud.getHomeyId();
+      this.webhookUrl = `https://webhooks.athom.com/webhook/${webhookId}/?homey=${encodeURIComponent(homeyId)}`;
+      this.webhook = await this.homey.cloud.createWebhook(webhookId, webhookSecret, {});
+      this.webhook.on('message', async args => {
+        await this.handleDiagralWebhookMessage(args).catch(err => {
+          this.error('Diagral webhook handling failed', err);
+        });
+      });
+      this.webhookId = webhookId;
+      this.webhookSecret = webhookSecret;
+      this.log('Diagral cloud webhook initialized');
+    } catch (err) {
+      this.error('Diagral cloud webhook initialization failed', err);
+    }
+  }
+
+  async getDiagralWebhookUrl(settings = {}) {
+    const webhookId = settings.webhookId || Homey.env.WEBHOOK_ID;
+    const webhookSecret = settings.webhookSecret || Homey.env.WEBHOOK_SECRET;
+
+    await this.initCloudWebhook(webhookId, webhookSecret);
+    return this.webhookUrl || '';
+  }
+
+  async handleDiagralWebhookMessage(args = {}) {
+    const payload = this.getWebhookPayload(args);
+    this.log('Diagral webhook received', this.summarizeWebhookPayload(payload));
+
+    const driver = this.homey.drivers.getDriver('alarm_hub');
+    const devices = driver.getDevices();
+    const transmitterId = String(payload?.transmitter_id || payload?.transmitterId || '').trim();
+    const target = devices.find(device => {
+      const settings = device.getSettings();
+      return String(settings.serialId || '').trim() === transmitterId;
+    }) || devices[0];
+
+    if (!target || typeof target.handleDiagralWebhook !== 'function') {
+      this.error('No Diagral device available for webhook');
+      return;
+    }
+
+    await target.handleDiagralWebhook(payload);
+  }
+
+  getWebhookPayload(args = {}) {
+    const candidates = [
+      args.body,
+      args.json,
+      args.data,
+      args.payload,
+      args,
+    ];
+
+    for (const candidate of candidates) {
+      if (!candidate) continue;
+      if (typeof candidate === 'object') return candidate;
+      if (typeof candidate === 'string') {
+        try {
+          return JSON.parse(candidate);
+        } catch (err) {
+          continue;
+        }
+      }
+    }
+
+    return {};
+  }
+
+  summarizeWebhookPayload(payload = {}) {
+    return {
+      transmitter_id: payload.transmitter_id || payload.transmitterId || '',
+      alarm_type: payload.alarm_type || payload.alarmType || '',
+      alarm_code: payload.alarm_code || payload.alarmCode || '',
+      alarm_description: payload.alarm_description || payload.alarmDescription || '',
+      group_index: payload.group_index || payload.groupIndex || '',
+      detail: payload.detail || {},
+    };
   }
 
   async triggerAlarmTriggered(device, tokens = {}) {
     if (!this._alarmTriggeredFlowTrigger) return;
     await this._alarmTriggeredFlowTrigger.trigger(device, tokens);
+    await this.notifyAlarmTriggered(device, tokens);
+  }
+
+  async notifyAlarmTriggered(device, tokens = {}) {
+    try {
+      if (!this.homey.notifications || typeof this.homey.notifications.createNotification !== 'function') {
+        return;
+      }
+
+      const deviceName = typeof device.getName === 'function' ? device.getName() : 'Diagral';
+      const detail = tokens.device_label ||
+        tokens.alarm_description ||
+        tokens.group_name ||
+        (tokens.group_id ? `Gruppo ${tokens.group_id}` : '');
+      const suffix = detail ? ` (${detail})` : '';
+      await this.homey.notifications.createNotification({
+        excerpt: `Allarme Diagral scattato: ${deviceName}${suffix}`,
+      });
+    } catch (err) {
+      this.error('Failed to create alarm notification', err);
+    }
   }
 
   async triggerAlarmDisarmed(device) {

@@ -31,6 +31,38 @@
         "en": "Group name",
         "it": "Nome gruppo"
       }
+    },
+    {
+      "name": "alarm_code",
+      "type": "string",
+      "title": {
+        "en": "Alarm code",
+        "it": "Codice allarme"
+      }
+    },
+    {
+      "name": "alarm_description",
+      "type": "string",
+      "title": {
+        "en": "Alarm description",
+        "it": "Descrizione allarme"
+      }
+    },
+    {
+      "name": "device_label",
+      "type": "string",
+      "title": {
+        "en": "Sensor name",
+        "it": "Nome sensore"
+      }
+    },
+    {
+      "name": "device_index",
+      "type": "string",
+      "title": {
+        "en": "Sensor ID",
+        "it": "ID sensore"
+      }
     }
   ]
 }

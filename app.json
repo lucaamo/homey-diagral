@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.diagral",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "compatibility": ">=12.0.0",
   "sdk": 3,
   "platforms": [
@@ -229,6 +229,38 @@
             "title": {
               "en": "Group name",
               "it": "Nome gruppo"
+            }
+          },
+          {
+            "name": "alarm_code",
+            "type": "string",
+            "title": {
+              "en": "Alarm code",
+              "it": "Codice allarme"
+            }
+          },
+          {
+            "name": "alarm_description",
+            "type": "string",
+            "title": {
+              "en": "Alarm description",
+              "it": "Descrizione allarme"
+            }
+          },
+          {
+            "name": "device_label",
+            "type": "string",
+            "title": {
+              "en": "Sensor name",
+              "it": "Nome sensore"
+            }
+          },
+          {
+            "name": "device_index",
+            "type": "string",
+            "title": {
+              "en": "Sensor ID",
+              "it": "ID sensore"
             }
           }
         ]
@@ -747,6 +779,7 @@
       },
       "capabilities": [
         "diagral_alarm_mode",
+        "diagral_alarm_mode_label",
         "diagral_alarm_triggered",
         "diagral_anomalies_count",
         "diagral_anomalies_summary",
@@ -760,6 +793,12 @@
           "title": {
             "en": "Alarm mode",
             "it": "Modalità allarme"
+          }
+        },
+        "diagral_alarm_mode_label": {
+          "title": {
+            "en": "Alarm status",
+            "it": "Stato allarme"
           }
         },
         "diagral_alarm_triggered": {
@@ -857,6 +896,32 @@
           "value": ""
         },
         {
+          "id": "webhookId",
+          "type": "text",
+          "label": {
+            "en": "Webhook ID",
+            "it": "Webhook ID"
+          },
+          "value": "",
+          "hint": {
+            "en": "Optional. Enables Diagral real-time webhook events.",
+            "it": "Opzionale. Abilita gli eventi webhook Diagral in tempo reale."
+          }
+        },
+        {
+          "id": "webhookSecret",
+          "type": "password",
+          "label": {
+            "en": "Webhook secret",
+            "it": "Webhook secret"
+          },
+          "value": "",
+          "hint": {
+            "en": "Keep this value private.",
+            "it": "Mantieni questo valore privato."
+          }
+        },
+        {
           "id": "pollInterval",
           "type": "number",
           "label": {
@@ -881,6 +946,11 @@
         {
           "id": "add_devices",
           "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "credentials"
         }
       ]
     }
@@ -955,6 +1025,17 @@
         }
       ],
       "uiComponent": "picker",
+      "icon": "/drivers/alarm_hub/assets/mode.svg"
+    },
+    "diagral_alarm_mode_label": {
+      "type": "string",
+      "title": {
+        "en": "Alarm status",
+        "it": "Stato allarme"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": null,
       "icon": "/drivers/alarm_hub/assets/mode.svg"
     },
     "diagral_alarm_triggered": {

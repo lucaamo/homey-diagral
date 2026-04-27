@@ -56,24 +56,6 @@ The app will automatically register the Homey webhook URL with Diagral.
 
 Keep `WEBHOOK_ID` and `WEBHOOK_SECRET` private. They are stored in the Homey device settings and must not be committed to GitHub or shared publicly.
 
-## Webhook opzionale Homey
-
-L'app può ricevere gli eventi di allarme Diagral tramite un webhook Homey. Questa funzione è particolarmente utile per la scheda Flow **Allarme scattato**, perché gli eventi webhook sono di solito più rapidi e precisi del polling.
-
-Per abilitare gli eventi webhook:
-
-1. Apri Homey Developer Tools e crea un nuovo webhook.
-2. Usa la strategia di matching **Query Parameter**.
-3. Copia i valori generati `WEBHOOK_ID` e `WEBHOOK_SECRET`.
-4. In Homey, apri il dispositivo **Allarme Diagral**.
-5. Vai in **Impostazioni avanzate**.
-6. Incolla i valori nei campi **Webhook ID** e **Webhook secret**.
-7. Salva le impostazioni.
-
-L'app registrerà automaticamente l'URL del webhook su Diagral.
-
-Mantieni `WEBHOOK_ID` e `WEBHOOK_SECRET` privati. Sono salvati nelle impostazioni del dispositivo su Homey e non devono essere pubblicati su GitHub o condivisi pubblicamente.
-
 ## Flow cards
 
 ### Triggers

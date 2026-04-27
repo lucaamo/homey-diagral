@@ -40,5 +40,8 @@
   },
   "1.1.10": {
     "en": "Add diagnostic capabilities and new Flow cards for status and anomaly changes."
+  },
+  "1.1.11": {
+    "en": "Added optional Homey webhook support for real-time Diagral alarm events, webhook settings and repair page, improved Alarm triggered Flow tokens, reduced duplicate state-change triggers, and added a read-only alarm status indicator for Homey Web."
   }
 }
